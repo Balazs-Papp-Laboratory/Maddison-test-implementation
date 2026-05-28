@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite both the software repository and the associated biological manuscript."
+title: "Maddison concentrated-changes simulation pipeline"
+type: software
+authors:
+  - family-names: "Fekete"
+    given-names: "Gergely"
+repository-code: "https://github.com/Balazs-Papp-Laboratory/Maddison-test-implementation"
+url: "https://github.com/Balazs-Papp-Laboratory/Maddison-test-implementation"
+date-released: "2026-05-28"
+license: "MIT"
+
+preferred-citation:
+  type: article
+  title: "Ecological generalism drives multidrug resistance evolution in Escherichia coli"
+  authors:
+    - family-names: "Ari"
+      given-names: "Eszter"
+  year: 2026
+  notes: "Manuscript submitted / under review"
