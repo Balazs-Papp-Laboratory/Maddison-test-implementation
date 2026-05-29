@@ -357,13 +357,7 @@ For local testing, use a much smaller value only if the test dataset is small.
 
 If Singularity/Apptainer cannot pull or run the configured container, either fix the container configuration or disable Singularity and install the required software manually.
 
-## Citation
 
-If you use this pipeline, cite the original Maddison concentrated-changes test:
-
-Maddison, W. P. 1990.  
-*A method for testing the correlated evolution of two binary characters: are gains or losses concentrated on certain branches of a phylogenetic tree?*  
-Evolution 44(3):539–557.
 
 
 ## Relationship to Maddison (1990) and MacClade
@@ -371,6 +365,22 @@ Evolution 44(3):539–557.
 This software is an independent implementation of a simulation-based workflow inspired by the concentrated-changes test described by Maddison (1990). It is designed for the specific use case analysed in the associated biological manuscript, where the focal tree region is derived from the reconstructed presence of a background gene.
 
 The implementation does not include or derive from MacClade source code. MacClade and the original concentrated-changes test should be cited separately where appropriate.
+
+
+
+## Citation
+
+If you use this pipeline, cite this GitHub repo:
+
+Fekete, G. 2026. Maddison concentrated-changes simulation pipeline [Computer software].
+*GitHub. [https://github.com/Balazs-Papp-Laboratory/Maddison-test-implementation](https://github.com/Balazs-Papp-Laboratory/Maddison-test-implementation)*
+
+and the publication of the original Maddison concentrated-changes test:
+
+Maddison, W. P. 1990.  
+*A method for testing the correlated evolution of two binary characters: are gains or losses concentrated on certain branches of a phylogenetic tree?*  
+Evolution 44(3):539–557.
+
 
 ## License
 
