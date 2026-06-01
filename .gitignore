@@ -1,0 +1,22 @@
+.RData
+.Rhistory
+.Rproj.user/
+.RDataTmp
+
+
+tmp-parallel-worker-log*
+*.log
+*log.txt
+
+java-bin
+
+# Ignore everything under test-data by default
+test-data/**
+
+# But keep the directory path visible to Git
+!test-data/
+!test-data/small/
+
+# Keep only these two test input files
+!test-data/small/count_result_FAMILY_extended.tsv
+!test-data/small/tree.nwk

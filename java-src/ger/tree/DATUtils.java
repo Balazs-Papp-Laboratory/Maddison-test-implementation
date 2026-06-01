@@ -61,58 +61,6 @@ public class DATUtils {
 	// return set1;
 	// }
 
-	////////////////////////////////
-	//
-	// public static int[][] ize(Map<String, Integer> map1, Map<String, Integer>
-	// map2, Node r)
-	// {
-	//
-	// System.out.println("IZE invoked");
-	// int[][] result = new int[2][2];
-	//
-	// LinkedList<Node> gray = new LinkedList<Node>();
-	// gray.push(r);
-	// LinkedHashSet<Node> set1 = new LinkedHashSet<Node>();
-	//
-	// while (!gray.isEmpty())
-	// {
-	// Node x = gray.removeLast();
-	// boolean notAlreadyContaind = set1.add(x);
-	// if (notAlreadyContaind)
-	// {
-	// gray.addAll(x.getChildren());
-	//
-	// // Integer x_v1_obj = map1.get(x.getName());
-	// // Integer x_v2_obj = map2.get(x.getName());
-	// //
-	// // if (x_v1_obj == null || x_v2_obj == null) {
-	// // System.out.println("ERROR: '" + x.getName() + "' nincs a map-ben.");
-	// // } else {
-	//
-	// int x_v1 = map1.get(x.getName());
-	// int x_v2 = map2.get(x.getName());
-	//
-	// int present1 = (x_v1 != 0 ? 1 : 0);
-	// int present2 = (x_v2 != 0 ? 1 : 0);
-	// result[present1][present2]++;
-	// // for(Node y :x.getChildren())
-	// // {
-	// // int y_v1 = map1.get(y.getName());
-	// // int y_v2 = map2.get(y.getName());
-	// //
-	// //
-	// // boolean gain1= x_v1==0 & y_v1!=0;
-	// // boolean gain2= x_v2==0 & y_v2!=0;
-	// // boolean loss1= x_v1!=0 & y_v1==0;
-	// // boolean loss2= x_v2!=0 & y_v2==0;
-	// //
-	// // }
-	// }
-	//
-	// }
-	//
-	// return result;
-	// }
 
 	public static int[] count_gene_presence_absence(int[] geneValues, DoubleArrayTree tree, int root) {
 

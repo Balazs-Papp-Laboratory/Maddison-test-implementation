@@ -372,7 +372,7 @@ The implementation does not include or derive from MacClade source code. MacClad
 
 If you use this pipeline, cite this GitHub repo:
 
-Fekete, G. 2026. Maddison concentrated-changes simulation pipeline [Computer software].
+Fekete, G. 2026. Maddison concentrated-changes simulation pipeline [Computer software].  
 *GitHub. [https://github.com/Balazs-Papp-Laboratory/Maddison-test-implementation](https://github.com/Balazs-Papp-Laboratory/Maddison-test-implementation)*
 
 and the publication of the original Maddison concentrated-changes test:

@@ -182,9 +182,10 @@ process maddison_concat_result_tables_BGpresent_black{
 
 	script:
 	"""
-	Rscript --vanilla ${params.r_script_dir}/Maddison+Fisher_test_calculation_pipeline/script-16-concat_Maddison_result_tables_of_java.R \
+	Rscript --vanilla ${params.r_script_dir}/Maddison+Fisher_test_calculation_pipeline/script-06-concatenate_maddison_result_parts.R \
  	$Maddison_result_BGpresent_black \
- 	concated_reduced_Maddison_result_BGpresent_black.rds
+ 	concated_reduced_Maddison_result_BGpresent_black.rds \
+ 	"drop"
 	"""
 }
 
@@ -201,7 +202,7 @@ process maddison_add_odds_ratios_BGpresent_black{
 
 	script:
 	"""
-	Rscript --vanilla ${params.r_script_dir}/Maddison+Fisher_test_calculation_pipeline/script-19A-extend_java_result_add_odds_ratios.R \
+	Rscript --vanilla ${params.r_script_dir}/Maddison+Fisher_test_calculation_pipeline/script-07-add_maddison_gain_odds_ratios.R \
  	$maddison_result_file_BGpresent_black \
  	"maddison_OR_BGpresent_black.rds"
 	"""
@@ -220,7 +221,7 @@ process maddison_add_fisher_BGpresent_black {
 
     script:
     """
-    Rscript --vanilla ${params.r_script_dir}/Maddison+Fisher_test_calculation_pipeline/script-19B-extend_java_result_add_Fisher_tests.R \
+    Rscript --vanilla ${params.r_script_dir}/Maddison+Fisher_test_calculation_pipeline/script-08-add_fisher_exact_tests.R \
     $maddison_or_file_BGpresent_black \
     "maddison_fisher_BGpresent_black.rds" \
     ${task.cpus}
@@ -241,7 +242,7 @@ process maddison_rename_columns_BGpresent_black{
 
 	script:
 	"""
-	Rscript --vanilla ${params.r_script_dir}/Maddison+Fisher_test_calculation_pipeline/script-19C1-rename_columns_only.R\
+	Rscript --vanilla ${params.r_script_dir}/Maddison+Fisher_test_calculation_pipeline/script-09-rename_result_columns_for_biological_analysis.R \
  	$maddison_result_file_BGpresent_black \
  	"Maddison+Fisher-result_BGpresent_black.rds"\
  	"column_rename_log_BGpresent_black.csv"
@@ -263,7 +264,7 @@ process maddison_convert_result_file_to_tsv_gz_BGpresent_black{
 
 	script:
 	"""
-	Rscript --vanilla ${params.r_script_dir}/Maddison+Fisher_test_calculation_pipeline/script-90-convert_rds_to_tsv_gz.R\
+	Rscript --vanilla ${params.r_script_dir}/Maddison+Fisher_test_calculation_pipeline/script-10-convert_rds_to_tsv_gz.R\
  	$maddison_result_file_rds_BGpresent_black \
  	"Maddison+Fisher-result_BGpresent_black.tsv.gz"
 	"""
@@ -315,9 +316,10 @@ process maddison_concat_result_tables_BGabsent_black{
 
 	script:
 	"""
-	Rscript --vanilla ${params.r_script_dir}/Maddison+Fisher_test_calculation_pipeline/script-16-concat_Maddison_result_tables_of_java.R \
+	Rscript --vanilla ${params.r_script_dir}/Maddison+Fisher_test_calculation_pipeline/script-06-concatenate_maddison_result_parts.R \
  	$Maddison_result_BGabsent_black \
- 	concated_reduced_Maddison_result_BGabsent_black.rds
+ 	concated_reduced_Maddison_result_BGabsent_black.rds \
+ 	"drop"
 	"""
 }
 
@@ -334,7 +336,7 @@ process maddison_add_odds_ratios_BGabsent_black{
 
 	script:
 	"""
-	Rscript --vanilla ${params.r_script_dir}/Maddison+Fisher_test_calculation_pipeline/script-19A-extend_java_result_add_odds_ratios.R \
+	Rscript --vanilla ${params.r_script_dir}/Maddison+Fisher_test_calculation_pipeline/script-07-add_maddison_gain_odds_ratios.R \
  	$maddison_result_file_BGabsent_black \
  	"maddison_OR_BGabsent_black.rds"
 	"""
@@ -353,7 +355,7 @@ process maddison_add_fisher_BGabsent_black {
 
     script:
     """
-    Rscript --vanilla ${params.r_script_dir}/Maddison+Fisher_test_calculation_pipeline/script-19B-extend_java_result_add_Fisher_tests.R \
+    Rscript --vanilla ${params.r_script_dir}/Maddison+Fisher_test_calculation_pipeline/script-08-add_fisher_exact_tests.R \
     $maddison_or_file_BGabsent_black \
     "maddison_fisher_BGabsent_black.rds" \
     ${task.cpus}
@@ -374,7 +376,7 @@ process maddison_rename_columns_BGabsent_black{
 
 	script:
 	"""
-	Rscript --vanilla ${params.r_script_dir}/Maddison+Fisher_test_calculation_pipeline/script-19C1-rename_columns_only.R\
+	Rscript --vanilla ${params.r_script_dir}/Maddison+Fisher_test_calculation_pipeline/script-09-rename_result_columns_for_biological_analysis.R \
  	$maddison_result_file_BGabsent_black \
  	"Maddison+Fisher-result_BGabsent_black.rds"\
  	"column_rename_log_BGabsent_black.csv"
@@ -396,7 +398,7 @@ process maddison_convert_result_file_to_tsv_gz_BGabsent_black{
 
 	script:
 	"""
-	Rscript --vanilla ${params.r_script_dir}/Maddison+Fisher_test_calculation_pipeline/script-90-convert_rds_to_tsv_gz.R\
+	Rscript --vanilla ${params.r_script_dir}/Maddison+Fisher_test_calculation_pipeline/script-10-convert_rds_to_tsv_gz.R\
  	$maddison_result_file_rds_BGabsent_black \
  	"Maddison+Fisher-result_BGabsent_black.tsv.gz"
 	"""

@@ -12,21 +12,28 @@ import ger.maddison.Node;
 import ger.maddison.NodeUtils;
 import ger.maddison.NwkNode;
 
-/***
- * Dupla tombos fa reprezentacio fiolgenetikai fáknak.
- * 
- * Csak {@link NwkNode}-ban reprezentalt fából lehet inicializálni.
- * 
- * Azért jó, mart minden node-nak van egy poziciós indexe, ami azt a node-ot
- * reprezentálja. ezek szépen 0-tol N-ig mennek. Lehet tombokkel true/false
- * értékeket vagy Stringeket rendelni minden nodejahoz a fának, ami gyorsabb és
- * tömörebb mit {@link Set}-et vagy {@link Map}-et használni. Mivel gyorsítani
- * szeretnem a szamitast erre szukseg lesz.
+/**
+ * Double-array tree representation for phylogenetic trees.
+ *
+ * <p>
+ * This representation can be initialized from a tree represented by
+ * {@link NwkNode} / {@link Node}. Each tree node is assigned a compact integer
+ * index in the range {@code 0..N-1}. This makes it possible to store per-node
+ * values in primitive arrays, such as {@code boolean[]}, {@code int[]}, or
+ * {@code String[]}, instead of using {@link Set} or {@link Map}-based
+ * structures.
+ * </p>
+ *
+ * <p>
+ * The representation is useful in the Maddison simulation pipeline because many
+ * operations repeatedly attach binary states, event labels, or masks to all
+ * nodes of the phylogenetic tree. Array-based access is more compact and faster
+ * than map-based node lookup.
+ * </p>
  */
 public class DoubleArrayTree
 {
-    static final int[] emptyChildArray = new int[0]; // sokszor kell ures tombot visszaadni. Olyankor ezt a konstanst
-						     // adom
+    static final int[] emptyChildArray = new int[0]; // Reused empty child array for leaf nodes.
 
     int root;
     int[] child;
@@ -41,7 +48,7 @@ public class DoubleArrayTree
 	{
 	    return -1;
 	}
-	// ha kell megnovelem a tomb mereteket duplajara
+	// Double the backing-array sizes if more capacity is needed.
 	if (child.length < firstFreeArrayPosition + size)
 	{
 	    int N = child.length * 2;
@@ -66,7 +73,7 @@ public class DoubleArrayTree
 
     private void trimArraySizes()
     {
-	// A tomb mereteket lecsokkentem, hogy minimalisra
+   	// Trim the backing arrays to the number of used positions.
 	int N = firstFreeArrayPosition;
 	int[] tmp = new int[N];
 	System.arraycopy(child, 0, tmp, 0, N);
@@ -124,7 +131,7 @@ public class DoubleArrayTree
 	    return new int[] { c0 };
 	} else
 	{
-	    // elvileg ide soha nem jön a vezerles
+		// This branch should never be reached for a valid double-array tree.
 	    return emptyChildArray;
 	}
     }
@@ -143,7 +150,7 @@ public class DoubleArrayTree
     public int getChildB(int x)
     {
 	int c = child[x] + 1;
-	if (c == 0 | c >= parent.length) // igazablol -1 re tesztelem, csak már hozzaadtam 1-et
+	if (c == 0 || c >= parent.length)  // This tests whether child[x] was -1 before adding 1.
 	{
 	    return -1;
 	}
@@ -152,7 +159,12 @@ public class DoubleArrayTree
     }
 
     /**
-     * fontos, h nem szabad modositani
+     * Return the internal node-name array.
+     *
+     * <p>
+     * The returned array is the internal backing array and <b>must not be modified</b> by
+     * callers.
+     * </p>
      */
     public String[] getNames()
     {
@@ -171,7 +183,7 @@ public class DoubleArrayTree
 
     public DoubleArrayTree(File file, String subroot) throws IOException
     {
-	this(NodeUtils.findFirst(NwkNode.parseNWK(file),subroot));
+	this(NodeUtils.findFirst(NwkNode.parseNWK(file), subroot));
 
     }
     
@@ -190,14 +202,15 @@ public class DoubleArrayTree
 	trimArraySizes();
     }
 
-    /***
+    /**
+     * Recursively build the double-array representation.
+     *
      * @param n
-     *            ez a node kepzodik le
+     *            node to be represented at the current position
      * @param parent
-     *            ez a node apjanak a pozicioja a tombos reprezentacioba
+     *            array index of the parent node, or {@code -1} for the root
      * @param position
-     *            az az aktualis n node pozicioja, ahova teszi. rekurziv fa epito
-     *            fuggveny, amit a konstruktor hiv
+     *            array index assigned to the current node
      */
     private void build(Node n, int parent, int position)
     {
@@ -217,7 +230,6 @@ public class DoubleArrayTree
 	}
 
     }
-    // --------------------------------------------
 
     // --------------------------------------------------------------
 
@@ -278,7 +290,7 @@ public class DoubleArrayTree
 		    sb.append(node.toString());
 		    sb.append(",");
 		}
-		sb.setLength(sb.length() - 1); // remove the last column
+		sb.setLength(sb.length() - 1); // Remove the trailing comma.
 		sb.append(')');
 	    }
 
@@ -291,28 +303,5 @@ public class DoubleArrayTree
 
     // ------------------------
 
-    public static void main(String[] args) throws IOException
-    {
-	
-	DoubleArrayTree dat = new DoubleArrayTree(new File("data/tree/ST_tree_renamedtips_mrca.nwk"),"Node16060");
-
-//	// Node tree = NwkNode.parseNWK(new File("data/tree/mini.nwk"));
-//	Node tree = NwkNode.parseNWK(new File("data/tree/ST_tree_renamedtips_mrca.nwk"));
-//	// Node tree = NwkNode.parseNWK(new
-//	// File("data/tree/rapidnj_tree_nonegative_outgroupMRCARooted.nwk"));
-//
-//	DoubleArrayTree dat = new DoubleArrayTree(tree);
-
-	DANode root = dat.new DANode(0);
-
-//	System.out.println(tree);
-	System.out.println(root);
-
-	System.out.println(dat.size());
-//	System.out.println(NodeUtils.collectAllDescendants(tree).size());
-	System.out.println(NodeUtils.collectAllDescendants(root).size());
-
-	System.out.println("Done");
-
-    }
+   
 }
