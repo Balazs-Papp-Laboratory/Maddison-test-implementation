@@ -211,6 +211,13 @@ The pipeline performs the following major steps:
 10. Rename result columns.
 11. Convert the final result table to compressed TSV format.
 
+
+## Method description
+
+A detailed description of the Maddison simulation pipeline and its processing steps is available here:
+
+[Method description](docs/maddison_pipeline_method_description.md)
+
 ## Configuration
 
 The most important parameters are defined in `nextflow.config`:
