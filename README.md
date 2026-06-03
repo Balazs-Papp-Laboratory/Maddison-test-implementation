@@ -25,6 +25,8 @@ The original exact recursive calculation becomes computationally impractical for
 ├── nextflow.config
 ├── compile_java.sh
 ├── README.md
+├── docs/
+│   └── maddison_pipeline_method_description.md
 ├── java-src/
 │   └── ger/
 │       ├── maddison/
@@ -47,6 +49,7 @@ Main files:
 - `java-src/`: Java source code for tree representation and Maddison simulation.
 - `R-src/`: R helper scripts used by the workflow.
 - `test-data/small/`: small bundled test dataset for a quick test run.
+- `docs/`: documentation.
 
 ## Requirements
 
